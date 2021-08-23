@@ -1,10 +1,12 @@
 import React from "react";
 import { LeftNavBar } from "./components/LeftNavBar";
+import { TopNavBar } from "./components/TopNavBar";
 
 function App() {
   return (
     <div className="App">
-      <LeftNavBar></LeftNavBar>
+      <TopNavBar></TopNavBar>
+      {/* <LeftNavBar></LeftNavBar> */}
     </div>
   );
 }
