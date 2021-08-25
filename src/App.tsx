@@ -1,6 +1,6 @@
 import React from "react";
-import { LeftNavBar } from "./components/LeftNavBar";
-import { TopNavBar } from "./components/TopNavBar";
+import { LeftNavBar } from "./components/3_Organisms/LeftNavBar";
+import { TopNavBar } from "./components/3_Organisms/TopNavBar";
 
 const topNavItems = [
   { name: "Home", route: "/", icon: "none" },
