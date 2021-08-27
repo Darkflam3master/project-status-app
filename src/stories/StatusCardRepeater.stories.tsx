@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
-import { StatusCardRepeater } from "./StatusCardRepeater";
+import { StatusCardRepeater } from "../components/2_Molecules/StatusCardRepeater/StatusCardRepeater";
 
 const meta: Meta = {
   title: "StatusCardRepeater",
