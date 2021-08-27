@@ -11,8 +11,8 @@ export default meta;
 
 export const Default = () => (
   <StatusCard
-    icon="openfolder"
-    name="name"
+    icon="OpenFolder"
+    name="TOTAL PROJECTS"
     count={123}
     color="purple"
   ></StatusCard>
