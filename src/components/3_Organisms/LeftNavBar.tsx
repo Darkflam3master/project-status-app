@@ -9,13 +9,13 @@ interface Props {
 export const LeftNavBar = ({ navItems }: Props) => {
   return (
     <Router>
-      <nav className="bg-gray-900 w-1/6 h-screen">
-        <div className="flex flex-col p-4 text-white divide-y-2 divide-gray-800">
+      <nav className="bg-gray-900">
+        <div className="flex flex-col p-4 text-white divide-y-2 divide-gray-800 ">
           {navItems.map((item) => (
             <Link
               to={item.route}
               key={item.name}
-              className="flex items-center p-4 hover:bg-gray-600"
+              className="flex flex-row items-center p-4 hover:bg-gray-600"
             >
               <div className="mr-2">{IconRenderer(item.icon)}</div>
               {item.name}

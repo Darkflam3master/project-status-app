@@ -7,9 +7,10 @@ interface Props {
 
 export const StatusCardRepeater = ({ cards }: Props) => {
   return (
-    <div className="inline-flex w-full space-x-6">
+    <div className="inline-flex w-full justify-evenly">
       {cards.map((card) => (
         <StatusCard
+          key={card.name}
           name={card.name}
           icon={card.icon}
           count={card.count}

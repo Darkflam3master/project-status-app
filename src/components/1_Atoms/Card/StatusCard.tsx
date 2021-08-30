@@ -17,22 +17,22 @@ export const StatusCard = ({
   return (
     <div
       id="card-container"
-      className={`bg-${color}-600 w-2/12 h-1/6 rounded overflow-hidden hover:bg-${color}-500`}
+      className={`bg-${color}-600 w-11/48 h-1/6 rounded overflow-hidden hover:bg-${color}-500`}
     >
       <div
         id="card-content"
-        className="inline-flex items-center p-5 space-x-8 text-white "
+        className="flex items-center p-5 space-x-8 text-white "
       >
         <div id="card-icon" className=" text-4xl">
           {IconRenderer(icon)}
         </div>
-        <div id="card-label-container">
-          <div id="card-count" className="text-2xl">
+        <div id="card-label-container" className="flex flex-col w-20">
+          <span id="card-count" className="text-2xl">
             {count}
-          </div>
-          <div id="card-name" className="font-thin">
+          </span>
+          <span id="card-name" className="font-thin uppercase">
             {name}
-          </div>
+          </span>
         </div>
       </div>
     </div>

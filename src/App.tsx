@@ -38,11 +38,28 @@ const cards = [
 function App() {
   return (
     <div className="App">
-      <TopNavBar navItems={topNavItems}></TopNavBar>
-      <LeftNavBar navItems={leftNavItems}></LeftNavBar>
-      <div>
-        <StatusCardRepeater cards={cards}></StatusCardRepeater>
-      </div>
+      <main className="flex flex-col flex-nowrap">
+        <TopNavBar navItems={topNavItems}></TopNavBar>
+        <section className="flex h-screen bg-gray-100 flex-row">
+          <div className="bg-gray-900 w-3/12">
+            <LeftNavBar navItems={leftNavItems}></LeftNavBar>
+          </div>
+
+          <div id="cards-container" className="p-6 h-full w-full">
+            <StatusCardRepeater cards={cards}></StatusCardRepeater>
+          </div>
+        </section>
+      </main>
+      {/* <TopNavBar navItems={topNavItems}></TopNavBar> */}
+      {/* <div className="grid grid-cols-6">
+        <div className="col-span-1">
+          <LeftNavBar navItems={leftNavItems}></LeftNavBar>
+        </div>
+
+        <div className=" col-span-5">
+          <StatusCardRepeater cards={cards}></StatusCardRepeater>
+        </div>
+      </div> */}
     </div>
   );
 }
