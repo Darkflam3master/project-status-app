@@ -21,12 +21,12 @@ export const StatusCard = ({
     >
       <div
         id="card-content"
-        className="flex items-center p-5 space-x-8 text-white "
+        className="flex items-center p-3 space-x-12 text-white "
       >
-        <div id="card-icon" className=" text-4xl">
+        <div id="card-icon" className="text-4xl ml-3">
           {IconRenderer(icon)}
         </div>
-        <div id="card-label-container" className="flex flex-col w-20">
+        <div id="card-label-container" className="flex flex-col w-20 space-y-2">
           <span id="card-count" className="text-2xl">
             {count}
           </span>
