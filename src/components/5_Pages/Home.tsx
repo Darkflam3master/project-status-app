@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusCardRepeater } from "../2_Molecules/StatusCardRepeater/StatusCardRepeater";
 import { LeftNavBar } from "../3_Organisms/LeftNavBar";
 import { TopNavBar } from "../3_Organisms/TopNavBar";
@@ -42,6 +42,61 @@ export const Home = (props: Props) => {
     },
     { name: "GREEN PROJECTS", icon: "ThumbsUp", count: 41, color: "green" },
   ];
+
+  useEffect(() => {
+    console.log("useEffect ran");
+    fetch("http://localhost:8000/projects")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        projectStatusCount(data);
+        // console.log(data);
+      });
+  }, []);
+
+  const projectStatusCount = (
+    projects: {
+      id: number;
+      projectName: string;
+      projectManager: string;
+      overallStatus: string;
+      percentageComplete: number;
+      modifiedDate: string;
+    }[]
+  ) => {
+    let total = 0,
+      red = 0,
+      yellow = 0,
+      green = 0;
+
+    for (let project of projects) {
+      switch (project.overallStatus) {
+        case "R":
+          red += 1;
+          break;
+        case "Y":
+          yellow += 1;
+          break;
+        case "G":
+          green += 1;
+          break;
+      }
+    }
+
+    total = red + yellow + green;
+
+    const projectCounts = {
+      total,
+      red,
+      yellow,
+      green,
+    };
+
+    console.log(projectCounts);
+
+    return { total, red, yellow, green };
+  };
 
   return (
     <main className="flex flex-col flex-nowrap">
