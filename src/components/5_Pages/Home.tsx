@@ -51,7 +51,6 @@ export const Home = (props: Props) => {
       })
       .then((data) => {
         projectStatusCount(data);
-        // console.log(data);
       });
   }, []);
 
