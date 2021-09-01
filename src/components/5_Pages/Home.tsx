@@ -1,11 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StatusCardRepeater } from "../2_Molecules/StatusCardRepeater/StatusCardRepeater";
 import { LeftNavBar } from "../3_Organisms/LeftNavBar";
 import { TopNavBar } from "../3_Organisms/TopNavBar";
+import { projectStatusCount } from "../helpers/helpers";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import { selectCount, setInitialData } from "../../redux/slices/projectCounter";
 
 interface Props {}
 
 export const Home = (props: Props) => {
+  const dispatch = useAppDispatch();
+  const { projects } = useAppSelector(selectCount);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/projects")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        //   setProjectData(data);
+        dispatch(setInitialData(data));
+      });
+  }, [dispatch]);
+
+  //   console.log(projects);
+
+  console.log(projects);
+
+  const statusCount = projectStatusCount(projects);
+
   const topNavItems = [
     { name: "Home", route: "/", icon: "none" },
     { name: "Create Project", route: "/create", icon: "none" },
@@ -25,77 +48,30 @@ export const Home = (props: Props) => {
     {
       name: "TOTAL PROJECTS",
       icon: "OpenFolder",
-      count: 107,
+      count: statusCount.total,
       color: "purple",
     },
     {
       name: "RED PROJECTS",
       icon: "ExclaimTriangle",
-      count: 18,
+      count: statusCount.red,
       color: "red",
     },
     {
       name: "YELLOW PROJECTS",
       icon: "ExclaimCircle",
-      count: 48,
+      count: statusCount.yellow,
       color: "yellow",
     },
-    { name: "GREEN PROJECTS", icon: "ThumbsUp", count: 41, color: "green" },
+    {
+      name: "GREEN PROJECTS",
+      icon: "ThumbsUp",
+      count: statusCount.green,
+      color: "green",
+    },
   ];
 
-  useEffect(() => {
-    console.log("useEffect ran");
-    fetch("http://localhost:8000/projects")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        projectStatusCount(data);
-      });
-  }, []);
-
-  const projectStatusCount = (
-    projects: {
-      id: number;
-      projectName: string;
-      projectManager: string;
-      overallStatus: string;
-      percentageComplete: number;
-      modifiedDate: string;
-    }[]
-  ) => {
-    let total = 0,
-      red = 0,
-      yellow = 0,
-      green = 0;
-
-    for (let project of projects) {
-      switch (project.overallStatus) {
-        case "R":
-          red += 1;
-          break;
-        case "Y":
-          yellow += 1;
-          break;
-        case "G":
-          green += 1;
-          break;
-      }
-    }
-
-    total = red + yellow + green;
-
-    const projectCounts = {
-      total,
-      red,
-      yellow,
-      green,
-    };
-
-    console.log(projectCounts);
-
-    return { total, red, yellow, green };
-  };
+  //   const [projects, setProjectData] = useState({});
 
   return (
     <main className="flex flex-col flex-nowrap">

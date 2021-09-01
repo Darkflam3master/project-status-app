@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import projectCounter from "./slices/projectCounter";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    projectCounter: projectCounter,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;

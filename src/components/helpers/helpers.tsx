@@ -34,3 +34,46 @@ export const IconRenderer = (icon: string) => {
 
   return finalIcon;
 };
+
+export const projectStatusCount = (
+  projects: {
+    id: number;
+    projectName: string;
+    projectManager: string;
+    overallStatus: string;
+    percentageComplete: number;
+    modifiedDate: Date;
+  }[]
+) => {
+  let total = 0,
+    red = 0,
+    yellow = 0,
+    green = 0;
+
+  for (let project of projects) {
+    switch (project.overallStatus) {
+      case "R":
+        red += 1;
+        break;
+      case "Y":
+        yellow += 1;
+        break;
+      case "G":
+        green += 1;
+        break;
+    }
+  }
+
+  total = red + yellow + green;
+
+  const projectCounts = {
+    total,
+    red,
+    yellow,
+    green,
+  };
+
+  console.log(projectCounts);
+
+  return { total, red, yellow, green };
+};
