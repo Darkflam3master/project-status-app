@@ -10,7 +10,7 @@ export const LeftNavBar = ({ navItems }: Props) => {
   return (
     <Router>
       <nav className="bg-gray-900">
-        <div className="flex flex-col p-4 text-white divide-y-2 divide-gray-800 ">
+        <div className="flex flex-col p-4 text-white divide-y-2 divide-gray-800">
           {navItems.map((item) => (
             <Link
               to={item.route}

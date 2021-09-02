@@ -1,14 +1,25 @@
+//react
 import React, { useEffect, useState } from "react";
+
+//components
 import { StatusCardRepeater } from "../2_Molecules/StatusCardRepeater/StatusCardRepeater";
 import { LeftNavBar } from "../3_Organisms/LeftNavBar";
 import { TopNavBar } from "../3_Organisms/TopNavBar";
+
+//helper
 import { projectStatusCount } from "../helpers/helpers";
+
+//redux
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { selectCount, setInitialData } from "../../redux/slices/projectCounter";
 
-interface Props {}
+//ag grid
+import { AgGridColumn, AgGridReact } from "ag-grid-react";
 
-export const Home = (props: Props) => {
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+
+export const Home = () => {
   const dispatch = useAppDispatch();
   const { projects } = useAppSelector(selectCount);
 
@@ -18,12 +29,9 @@ export const Home = (props: Props) => {
         return res.json();
       })
       .then((data) => {
-        //   setProjectData(data);
         dispatch(setInitialData(data));
       });
   }, [dispatch]);
-
-  //   console.log(projects);
 
   console.log(projects);
 
@@ -71,20 +79,38 @@ export const Home = (props: Props) => {
     },
   ];
 
-  //   const [projects, setProjectData] = useState({});
-
   return (
     <main className="flex flex-col flex-nowrap">
       <TopNavBar navItems={topNavItems}></TopNavBar>
-      <section className="flex h-screen bg-gray-100 flex-row">
+      <div className="flex h-screen bg-gray-100 flex-row">
         <div className="bg-gray-900 w-3/12">
           <LeftNavBar navItems={leftNavItems}></LeftNavBar>
         </div>
 
-        <div id="cards-container" className="p-6 h-full w-full">
+        <div id="cards-container" className="p-6 w-full h-1/6">
           <StatusCardRepeater cards={cards}></StatusCardRepeater>
+          <div className="m-5">
+            <div className=" bg-blue-400 text-xl text-white font-light rounded p-4">
+              All Projects
+            </div>
+            <div className=" border border-gray-400 border-t-0">blank</div>
+          </div>
         </div>
-      </section>
+      </div>
     </main>
+
+    // <main className="grid grid-cols-6">
+    //   <div className="col-span-6">
+    //     <TopNavBar navItems={topNavItems}></TopNavBar>
+    //   </div>
+
+    //   <div className="col-span-1">
+    //     <LeftNavBar navItems={leftNavItems}></LeftNavBar>
+    //   </div>
+
+    //   <div id="cards-container" className="col-span-5 mt-4">
+    //     <StatusCardRepeater cards={cards}></StatusCardRepeater>
+    //   </div>
+    // </main>
   );
 };
