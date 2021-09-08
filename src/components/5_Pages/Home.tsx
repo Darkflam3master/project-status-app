@@ -37,6 +37,8 @@ export const Home = () => {
 
   const statusCount = projectStatusCount(projects);
 
+  console.log(statusCount);
+
   const topNavItems = [
     { name: "Home", route: "/", icon: "none" },
     { name: "Create Project", route: "/create", icon: "none" },
@@ -79,21 +81,49 @@ export const Home = () => {
     },
   ];
 
+  const rowData = [
+    {
+      Name: "Moose",
+      Overall: "great",
+      Budget: 100,
+      Resource: "a lot",
+      Schedule: "tight",
+      "Project Manager": "Moose moose",
+      Modified: "Jan 8, 2016 7:51:40AM",
+    },
+  ];
+
   return (
-    <main className="flex flex-col flex-nowrap">
+    <main className="flex flex-col">
       <TopNavBar navItems={topNavItems}></TopNavBar>
       <div className="flex h-screen bg-gray-100 flex-row">
         <div className="bg-gray-900 w-3/12">
           <LeftNavBar navItems={leftNavItems}></LeftNavBar>
         </div>
 
-        <div id="cards-container" className="p-6 w-full h-1/6">
+        <div id="cards-container" className="p-6 w-full h-full">
           <StatusCardRepeater cards={cards}></StatusCardRepeater>
           <div className="m-5">
             <div className=" bg-blue-400 text-xl text-white font-light rounded p-4">
               All Projects
             </div>
-            <div className=" border border-gray-400 border-t-0">blank</div>
+            <div id="grid-container" className="h-full">
+              <div
+                className="ag-theme-alpine"
+                style={{ height: 400, width: "100%" }}
+              >
+                <AgGridReact rowData={rowData}>
+                  <AgGridColumn field="Name"></AgGridColumn>
+                  <AgGridColumn field="Overall"></AgGridColumn>
+                  <AgGridColumn field="Budget"></AgGridColumn>
+                  <AgGridColumn field="Resource"></AgGridColumn>
+                  <AgGridColumn field="Schedule"></AgGridColumn>
+                  <AgGridColumn field="Project Manager"></AgGridColumn>
+                  <AgGridColumn field="Modified"></AgGridColumn>
+                  <AgGridColumn field="Edit"></AgGridColumn>
+                </AgGridReact>
+              </div>
+            </div>
           </div>
         </div>
       </div>

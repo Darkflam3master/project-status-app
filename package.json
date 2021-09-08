@@ -25,6 +25,7 @@
   },
   "scripts": {
     "start": "craco start",
+    "json-server": "json-server --watch data/db.json --port 8000",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
