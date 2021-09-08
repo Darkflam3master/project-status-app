@@ -81,22 +81,10 @@ export const Home = () => {
     },
   ];
 
-  const rowData = [
-    {
-      Name: "Moose",
-      Overall: "great",
-      Budget: 100,
-      Resource: "a lot",
-      Schedule: "tight",
-      "Project Manager": "Moose moose",
-      Modified: "Jan 8, 2016 7:51:40AM",
-    },
-  ];
-
   return (
     <main className="flex flex-col">
       <TopNavBar navItems={topNavItems}></TopNavBar>
-      <div className="flex h-screen bg-gray-100 flex-row">
+      <div className="flex h-screen bg-gray-100 flex-row w-full">
         <div className="bg-gray-900 w-3/12">
           <LeftNavBar navItems={leftNavItems}></LeftNavBar>
         </div>
@@ -107,20 +95,42 @@ export const Home = () => {
             <div className=" bg-blue-400 text-xl text-white font-light rounded p-4">
               All Projects
             </div>
-            <div id="grid-container" className="h-full">
+            <div id="grid-container" className="" style={{ height: 650 }}>
               <div
                 className="ag-theme-alpine"
-                style={{ height: 400, width: "100%" }}
+                style={{ height: "100%", width: "100%" }}
               >
-                <AgGridReact rowData={rowData}>
-                  <AgGridColumn field="Name"></AgGridColumn>
-                  <AgGridColumn field="Overall"></AgGridColumn>
-                  <AgGridColumn field="Budget"></AgGridColumn>
-                  <AgGridColumn field="Resource"></AgGridColumn>
-                  <AgGridColumn field="Schedule"></AgGridColumn>
-                  <AgGridColumn field="Project Manager"></AgGridColumn>
-                  <AgGridColumn field="Modified"></AgGridColumn>
-                  <AgGridColumn field="Edit"></AgGridColumn>
+                <AgGridReact
+                  rowData={projects}
+                  pagination={true}
+                  paginationPageSize={10}
+                >
+                  <AgGridColumn
+                    headerName="Name"
+                    field="projectName"
+                  ></AgGridColumn>
+                  <AgGridColumn
+                    headerName="Overall"
+                    field="overallStatus"
+                  ></AgGridColumn>
+                  <AgGridColumn
+                    headerName="Budget"
+                    field="budget"
+                  ></AgGridColumn>
+                  <AgGridColumn
+                    headerName="Resource"
+                    field="resource"
+                  ></AgGridColumn>
+                  <AgGridColumn headerName="Schedule"></AgGridColumn>
+                  <AgGridColumn
+                    headerName="Project Manager"
+                    field="projectManager"
+                  ></AgGridColumn>
+                  <AgGridColumn
+                    headerName="Modified"
+                    field="modifiedDate"
+                  ></AgGridColumn>
+                  <AgGridColumn headerName="Edit"></AgGridColumn>
                 </AgGridReact>
               </div>
             </div>
