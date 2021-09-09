@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Admin } from "./components/5_Pages/Admin";
+import { CreateProject } from "./components/5_Pages/CreateProject";
 import { Home } from "./components/5_Pages/Home";
-
-import { useAppSelector, useAppDispatch } from "./redux/hooks";
-import { setInitialData } from "./redux/slices/projectCounter";
 
 function App() {
   // const dispatch = useAppDispatch();
@@ -24,6 +22,12 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route path="/create">
+          <CreateProject />
+        </Route>
+        <Route exact path="/admin">
+          <Admin />
         </Route>
       </Switch>
     </Router>
