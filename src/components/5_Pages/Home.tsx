@@ -95,10 +95,19 @@ export const Home = () => {
             <div className=" bg-blue-400 text-xl text-white font-light rounded p-4">
               All Projects
             </div>
-            <div id="grid-container" className="" style={{ height: 650 }}>
+            <div
+              id="grid-container"
+              className=" border border-gray-300 border-t-0"
+              style={{ display: "flex" }}
+            >
               <div
                 className="ag-theme-alpine"
-                style={{ height: "100%", width: "100%" }}
+                style={{
+                  height: 565,
+                  width: "100%",
+                  padding: 15,
+                  overflow: "hidden",
+                }}
               >
                 <AgGridReact
                   rowData={projects}
@@ -108,29 +117,35 @@ export const Home = () => {
                   <AgGridColumn
                     headerName="Name"
                     field="projectName"
+                    flex={6}
                   ></AgGridColumn>
                   <AgGridColumn
                     headerName="Overall"
                     field="overallStatus"
+                    flex={2}
                   ></AgGridColumn>
                   <AgGridColumn
                     headerName="Budget"
                     field="budget"
+                    flex={2}
                   ></AgGridColumn>
                   <AgGridColumn
                     headerName="Resource"
                     field="resource"
+                    flex={2}
                   ></AgGridColumn>
-                  <AgGridColumn headerName="Schedule"></AgGridColumn>
+                  <AgGridColumn headerName="Schedule" flex={2}></AgGridColumn>
                   <AgGridColumn
                     headerName="Project Manager"
                     field="projectManager"
+                    flex={3}
                   ></AgGridColumn>
                   <AgGridColumn
                     headerName="Modified"
                     field="modifiedDate"
+                    flex={3}
                   ></AgGridColumn>
-                  <AgGridColumn headerName="Edit"></AgGridColumn>
+                  <AgGridColumn headerName="Edit" flex={2}></AgGridColumn>
                 </AgGridReact>
               </div>
             </div>
